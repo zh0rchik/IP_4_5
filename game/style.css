@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+}
+
+#immutable_view {
+    display: grid;
+    grid-template-columns: 340px 480px 340px;
+    margin: auto;
+}
+
+#upper_right_egg_line, #lower_right_egg_line {
+    display: grid; /*сеточный*/
+    justify-items: end;
+}
+
+#lower_left_egg_line #chicken, #upper_left_egg_line #chicken {
+    transform: scale(-1, 1);    /* отражение по горизотали */
+}
+
+#upper_right_egg_line #rail, #lower_right_egg_line #rail {
+    transform: scale(-1, 1);    /* отражение по горизотали */
+}
+
+#ul_basket {
+    position: relative;
+    top: 264px;
+}
+
+#ll_basket {
+    visibility: hidden;
+    position: relative;
+    top: 594px;
+    left: -80px;
+}
+
+#ur_basket {
+    visibility: hidden;
+    position: relative;
+    left: 248px;
+    top: 264px;
+}
+
+#lr_basket {
+    visibility: hidden;
+    position: relative;
+    left: 168px;
+    top: 594px;
+}
+
+#score_view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#score_view label {
+    font-family: Calibri, serif;
+    font-size: 36px;
+}
+
+#score_view label+label {
+    margin-left: 8px;
+}
+
+#info {
+    margin: 0 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#info h3, #info p {
+    font-family: "Segoe UI", serif;
+}
+
+#info div+div {
+    margin-top: 128px;
+}
+
+#controls_view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#ul_egg_rail, #ll_egg_rail {
+    transform: rotate(35deg);
+    position: relative;
+    top: -128px;
+    left: 92px;
+}
+
+#ur_egg_rail, #lr_egg_rail {
+    transform: rotate(325deg);
+    position: relative;
+    top: -124px;
+    left: -100px;
+}
