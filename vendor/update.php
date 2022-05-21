@@ -8,6 +8,18 @@
         //
 
         //меняем в БД
+    function restart($id){
+        $request_user = DB::query("SELECT * FROM `users` WHERE `id` = '$id'"); // SQL запрос
+        $user = mysqli_fetch_assoc($request_user);
+        $_SESSION['user'] = [
+                "id" => $user['id'],            //сохраняет id пользователя
+                "name" => $user['name'],
+                "login" => $user['login'],
+                "avatar" => $user['avatar'],
+                "record" => $user['record'],
+                "admin" => $user['type_user']
+        ];
+    }
 
     $user_id = $_POST['id'];
     unset($_SESSION['message']);
@@ -26,6 +38,8 @@
             DB::query("UPDATE `users` SET `login` =" .'"'.$_POST['login'].'"'.'WHERE `id` = '.'"'. $_POST['id']. '"');
             if (!$_SESSION['user']['admin']) {
                 $_SESSION['user']['login']= $_POST['login'];
+            } else if($_POST['id'] === $_SESSION['user']['id']){
+                restart($_POST['id']);
             }
             $_SESSION['message'] = 'Данные изменены';
             $_SESSION['flag'] = true;
@@ -56,6 +70,8 @@
         DB::query("UPDATE `users` SET `avatar` =" .'"'.$path.'"'.'WHERE `id` = '.'"'. $_POST['id']. '"');
         if (!$_SESSION['user']['admin']) {
             $_SESSION['user']['avatar']= $path;
+        }else if($_POST['id'] === $_SESSION['user']['id']){
+            restart($_POST['id']);
         }
         $_SESSION['message'] = 'Данные изменены';
         $_SESSION['flag'] = true;
@@ -71,6 +87,8 @@
             DB::query("UPDATE `users` SET `name` =" .'"'.$_POST['name'].'"'.'WHERE `id` = '.'"'. $_POST['id']. '"');
             if (!$_SESSION['user']['admin']) {
                 $_SESSION['user']['name']= $_POST['name'];
+            } else if($_POST['id'] === $_SESSION['user']['id']){
+                restart($_POST['id']);
             }
             $_SESSION['message'] = 'Данные изменены';
             $_SESSION['flag'] = true;
