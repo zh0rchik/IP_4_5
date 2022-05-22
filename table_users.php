@@ -13,12 +13,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Авторизация и регистрация</title>
-    <link rel = "stylesheet" href="../styles/main.css">
+    <link rel = "stylesheet" href="styles/main.css">
     <script type = text/javascript src="scripts/script.js"></script>
 </head>
 
 <header>
-
     <?php
         if($_SESSION['flag']){
             echo '<p class = "message-success"> '. $_SESSION['message'] .'</p>';
@@ -38,32 +37,27 @@
     <p><a href="vendor/logout.php" class = "menu">Выйти</a></p>
 </header>
 
-<body>
+<body style="margin-top:100px">
+    <table>
+        <?php
+            $request_user = DB::query("SELECT * FROM `users`"); // SQL запрос
 
-<table>
-    <?php
-        $request_user = DB::query("SELECT * FROM `users`"); // SQL запрос
+            echo '<tr><td>id</td><td>login</td><td>avatar</td><td>record</td><td>name</td><td style = "width: 200px">Действия</td></tr>';
 
-        echo '<tr><td>id</td><td>login</td><td>avatar</td><td>record</td><td>name</td><td style = "width: 200px">Действия</td></tr>';
-
-        while($user = mysqli_fetch_array($request_user)){
-            echo '<tr><td>'.$user['id'].'</td><td>'.$user['login'].'</td><td id = "avatar_img">'.
-            '<img style = "width: 100px" src = '.$user['avatar'].'></td><td>'.$user['record'].'</td><td>'.$user['name'].
-                '</td>'.
-                    '<td>'.
-                        '<div class = "actions">'.
-                            '<a href = "" onclick = "confirmWindow('.$user['id'].');"><img src = "../image/imageAuto/delete.png" ></a>'.
-                            '<a href = "actions/changes.php?id='.$user['id'].'"><img src = "../image/imageAuto/change.png"></a>'.
-                        '</div>'.
+            while($user = mysqli_fetch_array($request_user)){
+                echo '<tr><td>'.$user['id'].'</td><td>'.$user['login'].'</td><td id = "avatar_img">'.
+                '<img style = "width: 100px" src = '.$user['avatar'].'></td><td>'.$user['record'].'</td><td>'.$user['name'].
                     '</td>'.
-             '</tr>';
-        }
-
-
-
-    ?>
-
-</table>
+                        '<td>'.
+                            '<div class = "actions">'.
+                                '<a  style = "cursor: pointer" onclick = "confirmWindow('.$user['id'].');"><img src = "../image/imageAuto/delete.png" ></a>'.
+                                '<a href = "actions/changes.php?id='.$user['id'].'"><img src = "../image/imageAuto/change.png"></a>'.
+                            '</div>'.
+                        '</td>'.
+                 '</tr>';
+            }
+        ?>
+    </table>
 
 </body>
 </html>

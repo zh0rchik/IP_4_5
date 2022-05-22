@@ -7,11 +7,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Авторизация и регистрация</title>
-    <link rel = "stylesheet" href="../styles/main.css">
+    <link rel = "stylesheet" href="styles/main.css">
     <script type = text/javascript src="scripts/script.js"></script>
 </head>
 <header><p><a href="index.php" class = "menu">Войти</a></p></header>
-<body>
+
+<body style="height: 100vh">
 
 <form action = "vendor/registering.php" method="post" enctype="multipart/form-data">
     <div class = "input-wrapper">

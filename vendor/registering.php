@@ -22,6 +22,7 @@
 
             if (!move_uploaded_file($_FILES['avatar']['tmp_name'],  '../'.$path)){
                 $_SESSION['message'] = 'Ошибка: не удалось загрузить фотографию';
+                $path = $path = '../uploads/anon.jpg';
                 header('Location: ../register.php');
             }
 
